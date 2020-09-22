@@ -67,8 +67,8 @@ implementation
     var sess : ISession;
     begin
         sess := fSessionManager[request];
-        viewParams['csrfName'] := sess['csrf_name'];
-        viewParams['csrfToken'] := sess['csrf_token'];
+        fViewParams['csrfName'] := sess['csrf_name'];
+        fViewParams['csrfToken'] := sess['csrf_token'];
         result := inherited handleRequest(request, response, args);
     end;
 

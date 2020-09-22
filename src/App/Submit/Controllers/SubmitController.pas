@@ -40,7 +40,7 @@ implementation
         const args : IRouteArgsReader
     ) : IResponse;
     begin
-        viewParams.setVar('email', request.getParsedBodyParam('email'));
+        fViewParams.setVar('email', request.getParsedBodyParam('email'));
         result := inherited handleRequest(request, response, args);
     end;
 

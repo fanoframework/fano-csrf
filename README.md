@@ -44,7 +44,7 @@ $ fanocli --key
 ## Create directory for sessions
 
 ```
-$ mkdir storages/sessions
+$ mkdir -p storages/sessions
 $ chmod 775 storages/sessions
 $ sudo chown [your user name]:[user where web server run] storages/sessions
 ```
