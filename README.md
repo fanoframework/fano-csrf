@@ -1,6 +1,6 @@
 # Fano CSRF Application
 
-Example web application using which demonstrate how to use CSRF protection in Fano Framework.
+Example web application that demonstrates how to use CSRF protection in Fano Framework.
 
 This project is generated using [Fano CLI](https://github.com/fanoframework/fano-cli)
 command line tools to help scaffolding web application using Fano Framework.
@@ -10,7 +10,6 @@ command line tools to help scaffolding web application using Fano Framework.
 - [Free Pascal](https://www.freepascal.org/) >= 3.0
 - Web Server (Apache, nginx)
 - [Fano Web Framework](https://github.com/fanoframework/fano)
-
 
 ## Clone this repository
 
@@ -26,10 +25,20 @@ If you are missing `--recursive` when you clone, you may find that `vendor/fano`
 $ git submodule update --init
 ```
 
+Change directory to `fano-csrf` as all commands below assumes you are inside it.
+
 ## Copy configuration
 
 ```
 $ ./tools/config.setup.sh
+```
+
+## Generate secret key
+
+Edit value of `secretKey` inside `config/config.json` file with your own secret key. You can generate secret key with [Fano CLI](https://github.com/fanoframework/fano-cli) or with other tools. To generate secret key with Fano CLI, run
+
+```
+$ fanocli --key
 ```
 
 ## Create directory for sessions
@@ -39,7 +48,7 @@ $ mkdir storages/sessions
 $ chmod 775 storages/sessions
 $ sudo chown [your user name]:[user where web server run] storages/sessions
 ```
-Replace `[your user name]` and `[user where web server run]` with actual value. For example Apache in Debian by default using `www-data`.
+Replace `[your user name]` and `[user where web server run]` with actual value. For example Apache in Debian by default using `www-data`. You need to make sure that application can write to `storage/sessions`.
 
 ## Build
 
@@ -84,7 +93,7 @@ $ sudo a2enmod fcgid
 $ sudo systemctl restart apache2
 ```
 
-Depending on your server setup, for example, if  you use `.htaccess`, add following code:
+Depending on your server setup, for example, if you use `.htaccess`, add following code:
 
 ```
 <IfModule mod_rewrite.c>
@@ -117,10 +126,11 @@ When running `build.sh` script, you may encounter following warning:
 /usr/bin/ld: warning: public/link.res contains output sections; did you forget -T?
 ```
 
-This is known issue between Free Pascal and GNU Linker. See
+This is known issue between Free Pascal 3.0.4 and GNU Linker. See
 [FAQ: link.res syntax error, or "did you forget -T?"](https://www.freepascal.org/faq.var#unix-ld219)
 
 However, this warning is minor and can be ignored. It does not affect output executable.
+To remedy, upgrade Free Pascal to version 3.2.
 
 ### Issue with unsynchronized compiled unit with unit source
 
